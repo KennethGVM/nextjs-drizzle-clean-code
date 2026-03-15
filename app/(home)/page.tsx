@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -31,18 +30,18 @@ export default async function Home() {
   });
 
   return (
-    <div className="grid place-items-center h-screen container mx-auto">
-      <div className="w-full max-w-2xl space-y-12">
+<div className="container mx-auto flex justify-center pt-12">
+  <div className="w-full max-w-2xl space-y-12">
         <Card>
           <CardHeader>
             <CardTitle>Crear tarea</CardTitle>
             <CardDescription>
               Crea una nueva tarea para completar.
             </CardDescription>
-            <CardContent>
-              <SaveForm />
-            </CardContent>
           </CardHeader>
+          <CardContent>
+            <SaveForm />
+          </CardContent>
         </Card>
         <div>
           <h1 className="text-2xl">Tareas</h1>
