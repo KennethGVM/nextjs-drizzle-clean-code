@@ -18,7 +18,7 @@ export const tasks = sqliteTable('tasks', {
   id: int().primaryKey({ autoIncrement: true }),
   name: text().notNull(),
   description: text().notNull(),
-  isDone: integer({ mode: 'boolean' }),
+  isDone: integer({ mode: 'boolean' }).notNull(),
 
   userId: int().references(() => users.id),
 });

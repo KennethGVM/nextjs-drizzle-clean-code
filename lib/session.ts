@@ -1,12 +1,13 @@
 import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
+import { db } from './db';
 
 type Session = {
   id?: number;
   email?: string;
 };
 
-export async function getSession() {
+async function getSession() {
   const cookieStore = await cookies();
 
   const session = await getIronSession<Session>(cookieStore, {
@@ -17,6 +18,26 @@ export async function getSession() {
   return session;
 }
 
+export async function getAuthUser() {
+  const session = await getSession();
+
+  const userId = session.id;
+
+  if (!userId) {
+    return null;
+  }
+
+  const user = await db.query.users.findFirst({
+    where: (u, { eq }) => eq(u.id, userId),
+  });
+
+  if (!user) {
+    return null;
+  }
+
+  return user;
+}
+
 export async function setSession(data: Session) {
   const session = await getSession();
 
@@ -24,4 +45,10 @@ export async function setSession(data: Session) {
   session.email = data.email;
 
   await session.save();
+}
+
+export async function clearSession() {
+  const session = await getSession();
+
+  await session.destroy();
 }
