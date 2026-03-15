@@ -16,7 +16,7 @@ const SaveForm = () => {
 
   return (
     <form className="space-y-4 pb-4" action={action}>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-1">
         <label htmlFor="name">Titulo</label>
         <input
           type="text"
@@ -25,7 +25,7 @@ const SaveForm = () => {
           className="flex-1 border rounded px-2 py-1"
         />
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-1">
         <label htmlFor="description">Descripcion</label>
         <textarea
           name="description"
